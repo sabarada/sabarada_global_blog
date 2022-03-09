@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby'
 import React, { FunctionComponent } from 'react'
 import { Global, css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 const globalStyle = css`
   * {
@@ -15,6 +16,12 @@ const textStyle = css`
   font-size: 18px;
   font-weight: 700;
   color: gray;
+`
+
+const Text1 = styled.div<{ disable: boolean }>`
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: ${({ disable }) => (disable ? 'line-through' : 'none')};
 `
 
 type InfoPageProps = {
@@ -40,8 +47,8 @@ const InfoPage: FunctionComponent<InfoPageProps> = function ({
     <div>
       <Global styles={globalStyle}></Global>
       <div css={textStyle}>{title}</div>
-      {description} <br />
-      {author} <br />
+      <Text1 disable={true}>{description}</Text1>
+      <Text1 disable={false}>{author}</Text1>
       <Link to="/">To Main</Link>
     </div>
   )
