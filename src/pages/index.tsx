@@ -9,6 +9,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
 import React, { FunctionComponent, useMemo } from 'react'
 import { PostListItemType } from 'types/PostItem.types'
+import Template from 'components/Common/Template'
 
 const Container = styled.div`
   display: flex;
@@ -73,16 +74,15 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
-      <PostList posts={edges} selectedCategory={selectedCategory} />
+      <PostList selectedCategory={selectedCategory} posts={edges} />
       <Footer />
-    </Container>
+    </Template>
   )
 }
 
